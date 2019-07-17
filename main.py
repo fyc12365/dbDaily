@@ -11,6 +11,8 @@ icon = pygame.image.load('Data/image/icon.png')
 pygame.display.set_icon(icon)
 bg = pygame.image.load('Data/image/bg.png')
 button_start = pygame.image.load('Data/image/start.png')
+scene_1_bg = pygame.image.load('Data/image/scene_1_bg.png')
+block_ = pygame.image.load('Data/image/block.png')
 mouse_replace = pygame.image.load('Data/image/mouse.png')
 clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
@@ -37,12 +39,25 @@ def main_menu():
         pygame.display.update()
 
 def scene_1():
+    pygame.mixer.music.load('Data/music/scene_1_bgm.mp3')
+    pygame.mixer.music.play(1,0)
     while True:
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-        screen.blit(bg,(0,0))
+            elif event.type == MOUSEBUTTONDOWN:
+                if 16<=event.pos[0]<=43 and 295<=event.pos[1]<=322:
+                    while True:
+                        for event in pygame.event.get():
+                            if event.type == QUIT:
+                                exit()
+                        screen.blit(scene_1_bg,(0,0))
+                        screen.blit(block_,(0,0))
+                        x,y = pygame.mouse.get_pos()
+                        screen.blit(mouse_replace,(x,y))
+                        pygame.display.update()
+        screen.blit(scene_1_bg,(0,0))
         x,y = pygame.mouse.get_pos()
         screen.blit(mouse_replace,(x,y))
         pygame.display.update()
