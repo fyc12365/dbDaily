@@ -37,6 +37,12 @@ def main_menu():
         x, y = pygame.mouse.get_pos()
         screen.blit(mouse_replace,(x,y))
         pygame.display.update()
+        
+textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
+text_1 = textFont_1.render('''好好学一学数学！
+智商-10''',True,(0,0,0))
+text_2 = textFont_1.render('''好好学一学数学！
+智商-10''',False,(0,0,0))
 
 def scene_1():
     buloon_1 = 0
@@ -48,49 +54,55 @@ def scene_1():
             if event.type == QUIT:
                 exit()
             elif event.type == MOUSEBUTTONDOWN:
-                if 16<=event.pos[0]<=43 and 295<=event.pos[1]<=322:
-                    timer_0 = time.time()
-                    while True:
-                        for event in pygame.event.get():
-                            if event.type == QUIT:
-                                exit()
-                        if time.time() >= timer_0+5:
-                            break
-                        screen.blit(scene_1_bg,(0,0))
-                        screen.blit(block_,(0,0))
-                        x,y = pygame.mouse.get_pos()
-                        screen.blit(mouse_replace,(x,y))
-                        pygame.display.update()
-                if 16<=event.pos[0]<=43 and 383<=event.pos[1]<=410:
-                    timer_0 = time.time()
-                    while True:
-                        for event in pygame.event.get():
-                            if event.type == QUIT:
-                                exit()
-                        if time.time() >= timer_0+5:
-                            break
-                        screen.blit(scene_1_bg,(0,0))
-                        screen.blit(block_,(0,0))
-                        x,y = pygame.mouse.get_pos()
-                        screen.blit(mouse_replace,(x,y))
-                        pygame.display.update()
-                if 466<=event.pos[0]<=493 and 295<=event.pos[1]<=322:
-                    timer_0 = time.time()
-                    while True:
-                        for event in pygame.event.get():
-                            if event.type == QUIT:
-                                exit()
-                        if time.time() >= timer_0+5:
-                            break
-                        screen.blit(scene_1_bg,(0,0))
-                        screen.blit(block_,(0,0))
-                        x,y = pygame.mouse.get_pos()
-                        screen.blit(mouse_replace,(x,y))
-                        pygame.display.update()
-                if 466<=event.pos[0]<=493 and 383<=event.pos[1]<=410:
-                    buloon_1 = 1
-                    break
+                try:
+                    if 16<=event.pos[0]<=43 and 295<=event.pos[1]<=322:
+                        timer_0 = time.time()
+                        while True:
+                            for event in pygame.event.get():
+                                if event.type == QUIT:
+                                    exit()
+                            if time.time() >= timer_0+5:
+                                break
+                            screen.blit(scene_1_bg,(0,0))
+                            screen.blit(block_,(0,0))
+                            screen.blit(text_1,(0,0))
+                            x,y = pygame.mouse.get_pos()
+                            screen.blit(mouse_replace,(x,y))
+                            pygame.display.update()
+                    if 16<=event.pos[0]<=43 and 383<=event.pos[1]<=410:
+                        timer_0 = time.time()
+                        while True:
+                            for event in pygame.event.get():
+                                if event.type == QUIT:
+                                    exit()
+                            if time.time() >= timer_0+5:
+                                break
+                            screen.blit(scene_1_bg,(0,0))
+                            screen.blit(block_,(0,0))
+                            screen.blit(text_2,(0,0))
+                            x,y = pygame.mouse.get_pos()
+                            screen.blit(mouse_replace,(x,y))
+                            pygame.display.update()
+                    if 466<=event.pos[0]<=493 and 295<=event.pos[1]<=322:
+                        timer_0 = time.time()
+                        while True:
+                            for event in pygame.event.get():
+                                if event.type == QUIT:
+                                    exit()
+                            if time.time() >= timer_0+5:
+                                break
+                            screen.blit(scene_1_bg,(0,0))
+                            screen.blit(block_,(0,0))
+                            x,y = pygame.mouse.get_pos()
+                            screen.blit(mouse_replace,(x,y))
+                            pygame.display.update()
+                    if 466<=event.pos[0]<=493 and 383<=event.pos[1]<=410:
+                        buloon_1 = 1
+                        break
+                except:
+                    pass
         if buloon_1 == 1:
+            pygame.mixer.music.stop()
             break
         screen.blit(scene_1_bg,(0,0))
         x,y = pygame.mouse.get_pos()
@@ -99,5 +111,3 @@ def scene_1():
 
 main_menu()
 scene_1()
-
-os.system('pause')
