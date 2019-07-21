@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 
 def main_menu():
-    pygame.mixer.music.load('Data/music/menu_bgm.mp3')
+    pygame.mixer.music.load('Data/music/menu_bgm.ogg')
     pygame.mixer.music.play(1,0)
     buloon_1 = 0
     while True:
@@ -46,7 +46,7 @@ text_2 = textFont_1.render('''好好学一学数学！
 
 def scene_1():
     buloon_1 = 0
-    pygame.mixer.music.load('Data/music/scene_1_bgm.mp3')
+    pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
     pygame.mixer.music.play(1,0)
     while True:
         clock.tick(60)
