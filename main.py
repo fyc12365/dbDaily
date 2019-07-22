@@ -13,6 +13,7 @@ bg = pygame.image.load('Data/image/bg.png')
 button_start = pygame.image.load('Data/image/start.png')
 scene_1_bg = pygame.image.load('Data/image/scene_1_bg.png')
 block_ = pygame.image.load('Data/image/block.png')
+error_1 = pygame.image.load('Data/image/error_1.jpg')
 mouse_replace = pygame.image.load('Data/image/mouse.png')
 clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
@@ -39,10 +40,7 @@ def main_menu():
         pygame.display.update()
         
 textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
-text_1 = textFont_1.render('''好好学一学数学！
-智商-10''',True,(0,0,0))
-text_2 = textFont_1.render('''好好学一学数学！
-智商-10''',False,(0,0,0))
+text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
 
 def scene_1():
     buloon_1 = 0
@@ -65,7 +63,8 @@ def scene_1():
                                 break
                             screen.blit(scene_1_bg,(0,0))
                             screen.blit(block_,(0,0))
-                            screen.blit(text_1,(0,0))
+                            screen.blit(error_1,(260,210))
+                            screen.blit(text_1,(120,180))
                             x,y = pygame.mouse.get_pos()
                             screen.blit(mouse_replace,(x,y))
                             pygame.display.update()
@@ -79,7 +78,8 @@ def scene_1():
                                 break
                             screen.blit(scene_1_bg,(0,0))
                             screen.blit(block_,(0,0))
-                            screen.blit(text_2,(0,0))
+                            screen.blit(error_1,(260,210))
+                            screen.blit(text_1,(120,180))
                             x,y = pygame.mouse.get_pos()
                             screen.blit(mouse_replace,(x,y))
                             pygame.display.update()
@@ -93,6 +93,8 @@ def scene_1():
                                 break
                             screen.blit(scene_1_bg,(0,0))
                             screen.blit(block_,(0,0))
+                            screen.blit(error_1,(260,210))
+                            screen.blit(text_1,(120,180))
                             x,y = pygame.mouse.get_pos()
                             screen.blit(mouse_replace,(x,y))
                             pygame.display.update()
