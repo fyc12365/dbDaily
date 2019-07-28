@@ -110,6 +110,17 @@ def scene_1():
         x,y = pygame.mouse.get_pos()
         screen.blit(mouse_replace,(x,y))
         pygame.display.update()
+        
+health = 100
+strength = 10
+iq = 250
+beauty = 0
+backpack = {}
+textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
+text_health = textFont_character.render('生命：{0}/100'.format(health),True,(0,0,0))
+text_strength = textFont_character.render('力量：{0}/100'.format(strength),True,(0,0,0))
+text_iq = textFont_character.render('智商：{0}/250'.format(iq),True,(0,0,0))
+text.beauty = textFont_character.render('颜值：{0}/100'.format(beauty),True,(0,0,0))
 
 main_menu()
 scene_1()
