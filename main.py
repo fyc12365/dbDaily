@@ -118,14 +118,27 @@ backpack = {}
 textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
 
 def update_health():
+    if health > 100:
+        health = 100
     text_health = textFont_character.render('生命：{0}/100'.format(health),True,(0,0,0))
 def update_strength():
+    if strength >100:
+        strength = 100
     text_strength = textFont_character.render('力量：{0}/100'.format(strength),True,(0,0,0))
 def update_iq():
+    if iq > 250:
+        iq = 250
+        iq_warn = True
     text_iq = textFont_character.render('智商：{0}/250'.format(iq),True,(0,0,0))
 def update_beauty():
+    if beauty > 100:
+        beauty = 100
+        beauty_warn = True
     text_beauty = textFont_character.render('颜值：{0}/100'.format(beauty),True,(0,0,0))
 def update_san():
+    if san > 100:
+        san = 100
+        san_warn = True
     test_san = textFont_character.render('精神：{0}/100'.format(san),True,(0,0,0))
 
 update_health()
