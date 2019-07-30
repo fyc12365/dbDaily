@@ -115,6 +115,9 @@ iq = 250
 beauty = 0
 san = 98
 backpack = {}
+iq_warn = False
+beauty_warn = False
+san_warn = False
 textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
 
 def update_health():
