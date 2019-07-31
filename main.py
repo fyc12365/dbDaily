@@ -20,17 +20,17 @@ pygame.mouse.set_visible(False)
 
 pygame.mixer.music.load('Data/music/menu_bgm.ogg')
 pygame.mixer.music.play(1,0)
-buloon_1 = 0
+buloon_1 = False
 while True:
     clock.tick(60)
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
         elif event.type == MOUSEBUTTONDOWN and 275<=event.pos[0]<=525 and 400<=event.pos[1]<=500 :
-            buloon_1 = 1
+            buloon_1 = True
             pygame.mixer.music.stop()
             break
-    if buloon_1 == 1:
+    if buloon_1 == True:
         break
     screen.blit(bg,(0,0))
     screen.blit(button_start,(275,400))
@@ -39,9 +39,25 @@ while True:
     pygame.display.update()
         
 textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
+textFont_2 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',30)
 text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
+text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
+text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
 
-buloon_1 = 0
+health = 100
+strength = 10
+iq = 250
+beauty = 0
+san = 98
+backpack = {}
+achievement = {}
+iq_warn = False
+beauty_warn = False
+san_warn = False
+textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
+
+buloon_1 = False
+buloon_2 = False
 pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
 pygame.mixer.music.play(1,0)
 while True:
@@ -51,7 +67,7 @@ while True:
             exit()
         elif event.type == MOUSEBUTTONDOWN:
             try:
-                if 16<=event.pos[0]<=43 and 295<=event.pos[1]<=322:
+                if 136<=event.pos[0]<=160 and 254<=event.pos[1]<=278:
                     timer_0 = time.time()
                     while True:
                         for event in pygame.event.get():
@@ -66,7 +82,7 @@ while True:
                         x,y = pygame.mouse.get_pos()
                         screen.blit(mouse_replace,(x,y))
                         pygame.display.update()
-                if 16<=event.pos[0]<=43 and 383<=event.pos[1]<=410:
+                if 136<=event.pos[0]<=160 and 317<=event.pos[1]<=341:
                     timer_0 = time.time()
                     while True:
                         for event in pygame.event.get():
@@ -81,7 +97,7 @@ while True:
                         x,y = pygame.mouse.get_pos()
                         screen.blit(mouse_replace,(x,y))
                         pygame.display.update()
-                if 466<=event.pos[0]<=493 and 295<=event.pos[1]<=322:
+                if 136<=event.pos[0]<=160 and 380<=event.pos[1]<=404:
                     timer_0 = time.time()
                     while True:
                         for event in pygame.event.get():
@@ -96,29 +112,25 @@ while True:
                         x,y = pygame.mouse.get_pos()
                         screen.blit(mouse_replace,(x,y))
                         pygame.display.update()
-                if 466<=event.pos[0]<=493 and 383<=event.pos[1]<=410:
-                    buloon_1 = 1
+                if 467<=event.pos[0]<=479 and 570<=event.pos[1]<=582:
+                    buloon_2 = not buloon_2
+                if 136<=event.pos[0]<=160 and 443<=event.pos[1]<=467:
+                    if buloon_2 == True:
+                        buloon_1 = True
                     break
             except:
                 pass
-    if buloon_1 == 1:
-        pygame.mixer.music.stop()
-        break
     screen.blit(scene_1_bg,(0,0))
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
+    if buloon_2 == False:
+        screen.blit(text_money1,(350,550))
+    else:
+        screen.blit(text_money2,(350,550))
+    if buloon_1 == True:
+        pygame.mixer.music.stop()
+        break
     pygame.display.update()
-        
-health = 100
-strength = 10
-iq = 250
-beauty = 0
-san = 98
-backpack = {}
-iq_warn = False
-beauty_warn = False
-san_warn = False
-textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
 
 def update_health():
     if health > 100:
