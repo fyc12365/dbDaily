@@ -37,7 +37,9 @@ while True:
     x, y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
     pygame.display.update()
-        
+
+pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
+
 textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
 textFont_2 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',30)
 text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
@@ -59,7 +61,6 @@ san_warn = False
 textFont_character = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',18)
 buloon_1 = False
 buloon_2 = False
-pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
 pygame.mixer.music.play(1,0)
 while True:
     clock.tick(60)
@@ -184,6 +185,7 @@ update_iq()
 update_beauty()
 update_san()
 
+text_name = textFont_character.render('姓名：李狗蛋',True,(0,0,0))
 text_health = textFont_character.render('生命：{0}/100'.format(health),True,(0,0,0))
 text_strength = textFont_character.render('力量：{0}/100'.format(strength),True,(0,0,0))
 text_san = textFont_character.render('精神：{0}/100'.format(san),True,(0,0,0))
@@ -191,7 +193,38 @@ text_iq = textFont_character.render('智商：{0}/250'.format(iq),True,(0,0,0))
 text_beauty = textFont_character.render('颜值：{0}/100'.format(beauty),True,(0,0,0))
 bg = pygame.image.load('Data/image/main_bg.png')
 
-text_test = textFont_1.render('未完待续...',True,(0,0,0))
+def character_info():
+    screen.blit(text_name,(10,10))
+    screen.blit(text_health,(10,40))
+    screen.blit(text_strength,(10,70))
+    screen.blit(text_iq,(10,100))
+    screen.blit(text_beauty,(10,130))
+    screen.blit(text_san,(10,160))
+
+###备忘代码行###
+move_right = [pygame.image.load('actor/R1.png'),
+             pygame.image.load('actor/R2.png'),
+             pygame.image.load('actor/R3.png'),
+             pygame.image.load('actor/R4.png'),
+             pygame.image.load('actor/R5.png'),
+             pygame.image.load('actor/R6.png'),
+             pygame.image.load('actor/R7.png'),
+             pygame.image.load('actor/R8.png'),
+             pygame.image.load('actor/R9.png')]
+
+move_left = [pygame.image.load('actor/L1.png'),
+            pygame.image.load('actor/L2.png'),
+            pygame.image.load('actor/L3.png'),
+            pygame.image.load('actor/L4.png'),
+            pygame.image.load('actor/L5.png'),
+            pygame.image.load('actor/L6.png'),
+            pygame.image.load('actor/L7.png'),
+            pygame.image.load('actor/L8.png'),
+            pygame.image.load('actor/L9.png')]
+
+walkCount = 0
+screen.blit(move_left[walkCount % 9], (x, y))
+###备忘代码行###
 
 while True:
     clock.tick(60)
@@ -199,12 +232,7 @@ while True:
         if event.type==QUIT:
             exit()
     screen.blit(bg,(0,0))
-    screen.blit(text_health,(10,10))
-    screen.blit(text_strength,(10,40))
-    screen.blit(text_iq,(10,70))
-    screen.blit(text_beauty,(10,100))
-    screen.blit(text_san,(10,130))
-    screen.blit(text_test,(300,250))
+    character_info()
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
     pygame.display.update()
