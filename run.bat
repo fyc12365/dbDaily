@@ -1,2 +1,2 @@
-python main.py
+python dbDaily.py
 pause
