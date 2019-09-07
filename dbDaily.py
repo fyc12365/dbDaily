@@ -43,18 +43,41 @@ clock = pygame.time.Clock()
 #实例化角色类，角色名为LGD
 LGD = character("李狗蛋",100,10,250,10,100)
 
+'''
+备忘代码行
+if event.type == KEYDOWN:
+    if event.key == K_UP:
+        LGD.move_up()
+    elif event.key == K_DOWN:
+        LGD.move_down()
+    elif event.key == K_LEFT:
+        LGD.move_left()
+    elif event.key == K_RIGHT:
+        LGD.move_right()
+'''
+
+#加载图片
+bg = pygame.image.load("Data/image/bg.png")
+button_start = pygame.image.load("Data/image/start.png")
+#一个辅助布尔值，用于一些辅助功能
+buloon_0 = True
+#加载音乐
+pygame.mixer.music.load("Data/music/menu_bgm.ogg")
+pygame.mixer.music.play(1,0)
+
 while True:
     clock.tick(60)
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
-        if event.type == KEYDOWN:
-            if event.key == K_UP:
-                LGD.move_up()
-            elif event.key == K_DOWN:
-                LGD.move_down()
-            elif event.key == K_LEFT:
-                LGD.move_left()
-            elif event.key == K_RIGHT:
-                LGD.move_right()
+        elif event.type == MOUSEBUTTONDOWN and 275<=event.pos[0]<=525 and 400<=event.pos[1]<=500 :
+            buloon_0 = False
+            pygame.mixer.music.stop()
+            break
+    if buloon_0 == False:
+        break
+    screen.blit(bg,(0,0))
+    screen.blit(button_start,(275,400))
+    x,y = pygame.mouse.get_pos()
+    screen.blit(mouse_replace,(x,y))
     pygame.display.update()
