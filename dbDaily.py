@@ -75,9 +75,20 @@ while True:
             pygame.mixer.music.stop()
             break
     if buloon_0 == False:
+        pygame.mixer.music.stop()
         break
     screen.blit(bg,(0,0))
     screen.blit(button_start,(275,400))
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
     pygame.display.update()
+
+pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
+#加载并渲染文本
+textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
+textFont_2 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',30)
+text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
+text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
+text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
+
+bg = pygame.image.load('Data/image/scene_1_bg.png')
