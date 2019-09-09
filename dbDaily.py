@@ -1,3 +1,4 @@
+#导入需要用到的库
 import pygame
 from sys import exit
 import time
@@ -5,6 +6,7 @@ from pygame.locals import *
 
 #定义角色类
 class character(object):
+    #基本属性
     def __init__(self,name,health,strength,iq,beauty,san,pos_x=0,pos_y=0):
         self.name = name
         self.health = health
@@ -15,6 +17,7 @@ class character(object):
         self.backpack = {}
         self.pos_x = pos_x
         self.pos_y = pos_y
+    #行为
     def move_left(self):
         self.pos_x = self.pos_x - 1
         print(self.pos_x,self.pos_y)
@@ -65,11 +68,16 @@ buloon_0 = True
 pygame.mixer.music.load("Data/music/menu_bgm.ogg")
 pygame.mixer.music.play(1,0)
 
+#用一个循环保持窗口常在
 while True:
+    #每秒60帧
     clock.tick(60)
+    #监听用户的行为
     for event in pygame.event.get():
+        #点击关闭时发生QUIT事件，执行退出指令
         if event.type == QUIT:
             exit()
+    #点击开始按钮后跳出此循环
         elif event.type == MOUSEBUTTONDOWN and 275<=event.pos[0]<=525 and 400<=event.pos[1]<=500 :
             buloon_0 = False
             pygame.mixer.music.stop()
@@ -77,10 +85,13 @@ while True:
     if buloon_0 == False:
         pygame.mixer.music.stop()
         break
+    #将背景图片和开始按钮画上去
     screen.blit(bg,(0,0))
     screen.blit(button_start,(275,400))
+    #获得鼠标的坐标并将替代图片画上去
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
+    #刷新窗口（否则黑屏）
     pygame.display.update()
 
 pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
