@@ -95,6 +95,7 @@ while True:
     pygame.display.update()
 
 pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
+pygame.mixer.music.play(1,0)
 #加载并渲染文本
 textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
 textFont_2 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',30)
@@ -103,3 +104,93 @@ text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
 text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
 
 bg = pygame.image.load('Data/image/scene_1_bg.png')
+
+while True:
+    clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            exit()
+        elif event.type == MOUSEBUTTONDOWN:
+            try:
+                if 136<=event.pos[0]<=160 and 254<=event.pos[1]<=278:
+                    timer_0 = time.time()
+                    iq = iq - 10
+                    while True:
+                        for event in pygame.event.get():
+                            if event.type == QUIT:
+                                exit()
+                        if time.time() >= timer_0+5:
+                            break
+                        screen.blit(bg,(0,0))
+                        screen.blit(block_,(0,0))
+                        screen.blit(error_1,(260,210))
+                        screen.blit(text_1,(120,180))
+                        x,y = pygame.mouse.get_pos()
+                        screen.blit(mouse_replace,(x,y))
+                        pygame.display.update()
+                if 136<=event.pos[0]<=160 and 317<=event.pos[1]<=341:
+                    timer_0 = time.time()
+                    iq = iq - 10
+                    while True:
+                        for event in pygame.event.get():
+                            if event.type == QUIT:
+                                exit()
+                        if time.time() >= timer_0+5:
+                            break
+                        screen.blit(bg,(0,0))
+                        screen.blit(block_,(0,0))
+                        screen.blit(error_1,(260,210))
+                        screen.blit(text_1,(120,180))
+                        x,y = pygame.mouse.get_pos()
+                        screen.blit(mouse_replace,(x,y))
+                        pygame.display.update()
+                if 136<=event.pos[0]<=160 and 380<=event.pos[1]<=404:
+                    iq = iq - 10
+                    timer_0 = time.time()
+                    while True:
+                        for event in pygame.event.get():
+                            if event.type == QUIT:
+                                exit()
+                        if time.time() >= timer_0+5:
+                            break
+                        screen.blit(bg,(0,0))
+                        screen.blit(block_,(0,0))
+                        screen.blit(error_1,(260,210))
+                        screen.blit(text_1,(120,180))
+                        x,y = pygame.mouse.get_pos()
+                        screen.blit(mouse_replace,(x,y))
+                        pygame.display.update()
+                if 467<=event.pos[0]<=479 and 570<=event.pos[1]<=582:
+                    buloon_2 = not buloon_2
+                if 136<=event.pos[0]<=160 and 443<=event.pos[1]<=467:
+                    if buloon_2 == True:
+                        buloon_1 = True
+                        break
+                    timer_0 = time.time()
+                    iq = iq - 10
+                    while True:
+                        for event in pygame.event.get():
+                            if event.type == QUIT:
+                                exit()
+                        if time.time() >= timer_0+5:
+                            break
+                        screen.blit(bg,(0,0))
+                        screen.blit(block_,(0,0))
+                        screen.blit(error_1,(260,210))
+                        screen.blit(text_1,(120,180))
+                        x,y = pygame.mouse.get_pos()
+                        screen.blit(mouse_replace,(x,y))
+                        pygame.display.update()
+            except:
+                pass
+    screen.blit(bg,(0,0))
+    if buloon_2 == False:
+        screen.blit(text_money1,(350,550))
+    else:
+        screen.blit(text_money2,(350,550))
+    if buloon_1 == True:
+        pygame.mixer.music.stop()
+        break
+    x,y = pygame.mouse.get_pos()
+    screen.blit(mouse_replace,(x,y))
+    pygame.display.update()
