@@ -103,6 +103,12 @@ text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
 text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
 text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
 
+buloon_1 = False
+buloon_2 = False
+
+block_ = pygame.image.load('Data/image/block.png')
+error_1 = pygame.image.load('Data/image/error_1.jpg')
+
 bg = pygame.image.load('Data/image/scene_1_bg.png')
 
 while True:
@@ -110,7 +116,7 @@ while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
-        elif event.type == MOUSEBUTTONDOWN:
+        if event.type == MOUSEBUTTONDOWN:
             try:
                 if 136<=event.pos[0]<=160 and 254<=event.pos[1]<=278:
                     timer_0 = time.time()
