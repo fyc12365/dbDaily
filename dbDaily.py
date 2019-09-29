@@ -103,10 +103,22 @@ text_1 = textFont_1.render('好好学一学数学！智商-10',True,(0,0,0))
 text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
 text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
 
-shelter = pygame.image.load('Data\image\block.png')
+shelter_1 = pygame.image.load('Data\image\shelter_white.png')
 error_1 = pygame.image.load('Data\image\error_1,png')
+bg = pygame.image.load('Data\image\scene_1_bg.png')
+
+def error_method1():
+    while True:
+        for event in pygame.event.get():
+            if event.type() == QUIT:
+                exit()
+        screen.blit(bg,(0,0))
+        screen.blit(shelter_1,(0,0))
+        #未结束
 
 while True:
     for event in pygame,event.get():
         if event.type() == QUIT:
             exit()
+        if event.type() == MOUSEBUTTONDOWN:
+            if event.pos[1] 
