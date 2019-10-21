@@ -129,7 +129,6 @@ while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
-<<<<<<< HEAD
         if event.type == MOUSEBUTTONDOWN:
             if 467<=event.pos[0]<=479 and 570<=event.pos[1]<=582:
                 buloon_0 = not buloon_0
@@ -159,15 +158,3 @@ while True:
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
     pygame.display.update()
-=======
-        if event.type() == MOUSEBUTTONDOWN:
-            if 467<=event.pos[0]<=479 and 570<=event.pos[1]<=582:
-                buloon_0 = not buloon_0
-            if 136<=event.pos[0]<=160:
-                if 254<=event.pos[1]<=278 or 317<=event.pos[1]<=341 or 380<=event.pos[1]<=404:
-                    error_method1()
-                if 443<=event.pos[1]<=467:
-                    if buloon_0 = True:
-                        break
-                    error_method()
->>>>>>> 75f2f9989336762d0f76221730534d16e0163c6a
