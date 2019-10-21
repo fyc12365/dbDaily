@@ -104,21 +104,57 @@ text_money1 = textFont_2.render('你有：$1.000,000,000,000',True,(0,0,0))
 text_money2 = textFont_2.render('你有：$1,000,000,000,000',True,(0,0,0))
 
 shelter_1 = pygame.image.load('Data\image\shelter_white.png')
-error_1 = pygame.image.load('Data\image\error_1,png')
+error_1 = pygame.image.load('Data\image\error_1.jpg')
 bg = pygame.image.load('Data\image\scene_1_bg.png')
 
 def error_method1():
+    time_0 = time.time()
     while True:
         for event in pygame.event.get():
-            if event.type() == QUIT:
+            if event.type == QUIT:
                 exit()
         screen.blit(bg,(0,0))
         screen.blit(shelter_1,(0,0))
-        #未结束
+        screen.blit(error_1,(260,210))
+        screen.blit(text_1,(120,180))
+        x,y = pygame.mouse.get_pos()
+        screen.blit(mouse_replace,(x,y))
+        pygame.display.update()
+        if time.time()>=time_0+5:
+            break
+
+buloon_1 = False
 
 while True:
-    for event in pygame,event.get():
-        if event.type() == QUIT:
+    for event in pygame.event.get():
+        if event.type == QUIT:
             exit()
-        if event.type() == MOUSEBUTTONDOWN:
-            if event.pos[1] 
+        if event.type == MOUSEBUTTONDOWN:
+            if 467<=event.pos[0]<=479 and 570<=event.pos[1]<=582:
+                buloon_0 = not buloon_0
+            if 136<=event.pos[0]<=160 and 254<=event.pos[1]<=278:
+                LGD.iq -= 10
+                error_method1()
+            if 136<=event.pos[0]<=160 and 317<=event.pos[1]<=341:
+                LGD.iq -= 10
+                error_method1()
+            if 136<=event.pos[0]<=160 and 380<=event.pos[1]<=404:
+                LGD.iq -= 10
+                error_method1()
+            if 136<=event.pos[0]<=160 and 443<=event.pos[1]<=467:
+                if buloon_0 == True:
+                    buloon_1 =True
+                    break
+                LGD.iq -= 10
+                error_method1()
+    if buloon_1 == True:
+        pygame.mixer.music.stop()
+        break
+    screen.blit(bg,(0,0))
+    if buloon_0 == False:
+        screen.blit(text_money1,(350,550))
+    else:
+        screen.blit(text_money2,(350,550))
+    x,y = pygame.mouse.get_pos()
+    screen.blit(mouse_replace,(x,y))
+    pygame.display.update()
