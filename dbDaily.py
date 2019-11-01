@@ -7,7 +7,7 @@ from pygame.locals import *
 #定义角色类
 class character(object):
     #基本属性
-    def __init__(self,name,health,strength,iq,beauty,san,pos_x=0,pos_y=0):
+    def __init__(self,name,health,strength,iq,beauty,san,direct='R1',pos_x=0,pos_y=0):
         self.name = name
         self.health = health
         self.strength = strength
@@ -15,21 +15,55 @@ class character(object):
         self.beauty = beauty
         self.san = san
         self.backpack = {}
+        self.image = 0
+        self.direct = direct
         self.pos_x = pos_x
         self.pos_y = pos_y
     #行为
     def move_left(self):
         self.pos_x = self.pos_x - 1
-        print(self.pos_x,self.pos_y)
+        if self.direct == 'L1':
+            self.image = LGD_L1
+            self.direct = 'L2'
+        else:
+            self.image = LGD_L2
+            self.direct = 'L1'
     def move_right(self):
         self.pos_x = self.pos_x + 1
-        print(self.pos_x,self.pos_y)
+        if self.direct =='R1':
+            self.image = LGD_R1
+            self.direct = 'R2'
+        else:
+            self.image = LGD_R2
+            self.direct = 'R1'
     def move_up(self):
         self.pos_y = self.pos_y - 1
-        print(self.pos_x,self.pos_y)
+        if self.direct == 'L1':
+            self.image = LGD_L1
+            self.direct = 'L2'
+        if self.direct == 'L2':
+            self.image = LGD_L2
+            self.direct = 'L1'
+        if self.direct == 'R1':
+            self.image = LGD_R1
+            self.direct = 'R2'
+        if self.direct == 'R2':
+            self.image = LGD_R2
+            self.direct = 'R1'
     def move_down(self):
         self.pos_y = self.pos_y + 1
-        print(self.pos_x,self.pos_y)
+        if self.direct == 'L1':
+            self.image = LGD_L1
+            self.direct = 'L2'
+        if self.direct == 'L2':
+            self.image = LGD_L2
+            self.direct = 'L1'
+        if self.direct == 'R1':
+            self.image = LGD_R1
+            self.direct = 'R2'
+        if self.direct == 'R2':
+            self.image = LGD_R2
+            self.direct = 'R1'
 
 #初始化pygame及其混响（声音）
 pygame.init()
@@ -48,15 +82,6 @@ LGD = character("李狗蛋",100,10,250,10,100)
 
 '''
 备忘代码行
-if event.type == KEYDOWN:
-    if event.key == K_UP:
-        LGD.move_up()
-    elif event.key == K_DOWN:
-        LGD.move_down()
-    elif event.key == K_LEFT:
-        LGD.move_left()
-    elif event.key == K_RIGHT:
-        LGD.move_right()
 '''
 
 #加载图片
@@ -66,7 +91,7 @@ button_start = pygame.image.load("Data/image/start.png")
 buloon_0 = True
 #加载音乐
 pygame.mixer.music.load("Data/music/menu_bgm.ogg")
-pygame.mixer.music.play(1,0)
+pygame.mixer.music.play(-1,0)
 
 #用一个循环保持窗口常在
 while True:
@@ -95,7 +120,7 @@ while True:
     pygame.display.update()
 
 pygame.mixer.music.load('Data/music/scene_1_bgm.ogg')
-pygame.mixer.music.play(1,0)
+pygame.mixer.music.play(-1,0)
 #加载并渲染文本
 textFont_1 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',50)
 textFont_2 = pygame.font.Font('C:\Windows\Fonts\simhei.ttf',30)
@@ -126,6 +151,7 @@ def error_method1():
 buloon_1 = False
 
 while True:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
@@ -155,6 +181,36 @@ while True:
         screen.blit(text_money1,(350,550))
     else:
         screen.blit(text_money2,(350,550))
+    x,y = pygame.mouse.get_pos()
+    screen.blit(mouse_replace,(x,y))
+    pygame.display.update()
+
+LGD_SR = pygame.image.load('Data/image/move/LGD_SR.png')
+LGD_SL = pygame.image.load('Data/image/move/LGD_SL.png')
+LGD_R1 = pygame.image.load('Data/image/move/LGD_R1.png')
+LGD_R2 = pygame.image.load('Data/image/move/LGD_R2.png')
+LGD_L1 = pygame.image.load('Data/image/move/LGD_L1.png')
+LGD_L2 = pygame.image.load('Data/image/move/LGD_L2.png')
+
+bg = pygame.image.load('Data/image/main_bg.png')
+LGD.image = LGD_R1
+
+while True:
+    clock.tick(4)
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            exit()
+    key_pressed = pygame.key.get_pressed()
+    if key_pressed[K_UP]:
+        LGD.move_up()
+    elif key_pressed[K_DOWN]:
+        LGD.move_down()
+    elif key_pressed[K_LEFT]:
+        LGD.move_left()
+    elif key_pressed[K_RIGHT]:
+        LGD.move_right()
+    screen.blit(bg,(0,0))
+    screen.blit(LGD.image,(LGD.pos_x,LGD.pos_y))
     x,y = pygame.mouse.get_pos()
     screen.blit(mouse_replace,(x,y))
     pygame.display.update()
