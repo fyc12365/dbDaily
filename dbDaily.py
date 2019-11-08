@@ -7,7 +7,7 @@ from pygame.locals import *
 #定义角色类
 class character(object):
     #基本属性
-    def __init__(self,name,health,strength,iq,beauty,san,direct='R1',pos_x=0,pos_y=0):
+    def __init__(self,name,health,strength,iq,beauty,san,direct=0,pos_x=0,pos_y=0):
         self.name = name
         self.health = health
         self.strength = strength
@@ -22,48 +22,63 @@ class character(object):
     #行为
     def move_left(self):
         self.pos_x = self.pos_x - 1
-        if self.direct == 'L1':
+        if self.direct > 9:
+            self.direct = 0
+        if self.direct == 0:
             self.image = LGD_L1
-            self.direct = 'L2'
-        else:
+        if self.direct == 5:
             self.image = LGD_L2
-            self.direct = 'L1'
+        self.direct += 1
     def move_right(self):
         self.pos_x = self.pos_x + 1
-        if self.direct =='R1':
+        if self.direct < 10:
+            self.direct = 19
+        if self.direct == 19:
             self.image = LGD_R1
-            self.direct = 'R2'
-        else:
+        if self.direct == 14:
             self.image = LGD_R2
-            self.direct = 'R1'
+        self.direct -= 1
     def move_up(self):
         self.pos_y = self.pos_y - 1
-        if self.direct == 'L1':
-            self.image = LGD_L1
-            self.direct = 'L2'
-        if self.direct == 'L2':
-            self.image = LGD_L2
-            self.direct = 'L1'
-        if self.direct == 'R1':
-            self.image = LGD_R1
-            self.direct = 'R2'
-        if self.direct == 'R2':
-            self.image = LGD_R2
-            self.direct = 'R1'
+        if self.direct < 10:
+            if self.direct == 0:
+                self.image = LGD_L1
+            if self.direct == 5:
+                self.image = LGD_L2
+            self.direct += 1
+            if self.direct > 9:
+                self.direct = 0
+        if self.direct > 9:
+            if self.direct == 19:
+                self.image = LGD_R1
+            if self.direct == 14:
+                self.image = LGD_R2
+            self.direct -= 1
+            if self.direct < 10:
+                self.direct = 19
     def move_down(self):
         self.pos_y = self.pos_y + 1
-        if self.direct == 'L1':
-            self.image = LGD_L1
-            self.direct = 'L2'
-        if self.direct == 'L2':
-            self.image = LGD_L2
-            self.direct = 'L1'
-        if self.direct == 'R1':
-            self.image = LGD_R1
-            self.direct = 'R2'
-        if self.direct == 'R2':
-            self.image = LGD_R2
-            self.direct = 'R1'
+        if self.direct < 10:
+            if self.direct == 0:
+                self.image = LGD_L1
+            if self.direct == 5:
+                self.image = LGD_L2
+            self.direct += 1
+            if self.direct > 9:
+                self.direct = 0
+        if self.direct > 9:
+            if self.direct == 19:
+                self.image = LGD_R1
+            if self.direct == 14:
+                self.image = LGD_R2
+            self.direct -= 1
+            if self.direct < 10:
+                self.direct = 19
+    def stand(self):
+        if 0 <= self.direct <=9:
+            self.image = LGD_SL
+        else:
+            self.image = LGD_SR
 
 #初始化pygame及其混响（声音）
 pygame.init()
@@ -196,7 +211,7 @@ bg = pygame.image.load('Data/image/main_bg.png')
 LGD.image = LGD_R1
 
 while True:
-    clock.tick(4)
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
@@ -209,6 +224,8 @@ while True:
         LGD.move_left()
     elif key_pressed[K_RIGHT]:
         LGD.move_right()
+    else:
+        LGD.stand()
     screen.blit(bg,(0,0))
     screen.blit(LGD.image,(LGD.pos_x,LGD.pos_y))
     x,y = pygame.mouse.get_pos()
